@@ -46,7 +46,8 @@ class App extends Component {
           ...prevState.products,
           {
             label: this.state.text,
-            id: this.state.products.length + 1
+            id: this.state.products.length + 1,
+            edit: false
           }
         ],
         text: ""
@@ -62,12 +63,11 @@ class App extends Component {
   };
 
   updateProduct = (label, index) => e => {
-    console.log(e.keyCode);
     if (e.keyCode === 13) {
       this.setState(async () => ({
         products: await this.state.products.forEach(e => {
           if (e.id === index) {
-            return (e.label = label), (e.edit = false);
+            return ((e.label = label), (e.edit = false));
           }
         })
       }));
